@@ -8,6 +8,10 @@ import Main from "./components/Main";
 import MealsProvider from "./components/providers/MealsProvider";
 import MealsList from "./components/providers/MealsList";
 import Counter from "./components/providers/Counter";
+import Fruits from "./components/lab/Fruits";
+import FruitsCounter from "./components/lab/FruitsCounter";
+import Count from "./components/statefull/Count";
+import Greeting from "./components/stateless/Greeting";
 
 const reducer = (state, action) => {
   if (action.type === "ride") return { money: state.money + 10 };
@@ -24,6 +28,12 @@ function App() {
 
   const initialState = { money: 100 };
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const [fruits] = React.useState([
+    { fruitName: "apple", id: 1 },
+    { fruitName: "apple", id: 2 },
+    { fruitName: "plum", id: 3 },
+  ]);
 
   return (
     <div className="App">
@@ -49,6 +59,18 @@ function App() {
         </button>
         <p></p>
       </div>
+
+      {/* lab */}
+      <h1>Where should the state go?</h1>
+      <Fruits fruits={fruits} />
+      <FruitsCounter fruits={fruits} />
+
+      {/* Statefull: Stateful components manage their own state, which can change over time (e.g., in response to user interactions). */}
+      <Count />
+      <p></p>
+
+      {/* Stateless: Props from Parent: Stateless components (often functional components) receive data through props from their parent components. They do not manage any internal state and rely entirely on the props provided to them. */}
+      <Greeting name="Gam" />
     </div>
   );
 }
