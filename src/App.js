@@ -12,6 +12,8 @@ import Fruits from "./components/lab/Fruits";
 import FruitsCounter from "./components/lab/FruitsCounter";
 import Count from "./components/statefull/Count";
 import Greeting from "./components/stateless/Greeting";
+import FilterableProductTable from "./components/products/FilterableProductTable";
+import { Routes, Route } from "react-router-dom";
 
 const reducer = (state, action) => {
   if (action.type === "ride") return { money: state.money + 10 };
@@ -34,6 +36,15 @@ function App() {
     { fruitName: "apple", id: 2 },
     { fruitName: "plum", id: 3 },
   ]);
+
+  const PRODUCTS = [
+    { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
+    { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
+    { category: "Fruits", price: "$2", stocked: false, name: "Passionfruit" },
+    { category: "Vegetables", price: "$2", stocked: true, name: "Spinach" },
+    { category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" },
+    { category: "Vegetables", price: "$1", stocked: true, name: "Peas" },
+  ];
 
   return (
     <div className="App">
@@ -71,6 +82,9 @@ function App() {
 
       {/* Stateless: Props from Parent: Stateless components (often functional components) receive data through props from their parent components. They do not manage any internal state and rely entirely on the props provided to them. */}
       <Greeting name="Gam" />
+      <p></p>
+      <FilterableProductTable products={PRODUCTS} />
+      <p></p>
     </div>
   );
 }
